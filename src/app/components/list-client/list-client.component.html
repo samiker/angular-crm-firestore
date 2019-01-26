@@ -1,33 +1,34 @@
-<div class="row">
-  <div class="col-md-6">
-    <h1>List of clients</h1>
+ 
+ <div class="row">
+    <div class="col-md-6">
+      <h1>List of clients</h1>
+    </div>
+    <div class="col-md-6 text-right">
+      <a routerLink="/add" class="btn btn-success"><i class="fa fa-plus"></i></a>
+    </div>
   </div>
-  <div class="col-md-6">
-    <a href="#" class="btn btn-success"><i class="fa fa-plus">Add Client</i></a>
+ 
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Fullname</th>
+            <th>Telephone</th>
+            <th>Email</th>
+            <th>Balance</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td>{{ client.firstname }} {{ client.lastname }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.balance }}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <table class="table striped">
-      <thead>
-        <tr>
-          <th>Fullname</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>Balance</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let client of clients">
-          <td>{{ client.firstname }} {{ client.lastname }}</td>
-          <td>{{ client.phone }}</td>
-          <td>{{ client.email }}</td>
-          <td>{{ client.balance }}</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
