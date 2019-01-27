@@ -14,8 +14,8 @@ export class EditClientComponent implements OnInit {
 
   client: Client = {
     id: "",
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     balance: 0,

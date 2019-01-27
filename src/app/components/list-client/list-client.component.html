@@ -10,6 +10,9 @@
 
   <div class="row">
     <div class="col-md-12">
+
+      <input (keyup)="searchClient()" [(ngModel)]="search" type="text" class="form-control" placeholder="Search...">
+
       <table class="table table-striped">
         <thead>
           <tr>
@@ -22,7 +25,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let client of clients">
+          <tr *ngFor="let client of searchClients">
             <td>
 <button (click)="toggleActive(client)" class="btn btn-sm" [ngClass]="
 {
