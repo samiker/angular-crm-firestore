@@ -16,8 +16,11 @@ import { ShowClientComponent } from './components/show-client/show-client.compon
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment.prod';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

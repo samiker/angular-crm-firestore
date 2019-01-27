@@ -7,12 +7,13 @@
       <a routerLink="/add" class="btn btn-success"><i class="fa fa-plus"></i></a>
     </div>
   </div>
- 
+
   <div class="row">
     <div class="col-md-12">
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>Fullname</th>
             <th>Telephone</th>
             <th>Email</th>
@@ -22,11 +23,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let client of clients">
+            <td>
+<button (click)="toggleActive(client)" class="btn btn-sm" [ngClass]="
+{
+'btn-success' : client.active,
+'btn-danger' : !client.active
+}
+">
+    <i class="fa fa-power-off"></i>
+</button>
+            </td>
             <td>{{ client.firstName }} {{ client.lastName }}</td>
             <td>{{ client.phone }}</td>
             <td>{{ client.email }}</td>
             <td>{{ client.balance }}</td>
-            <td></td>
+            <td class="text-right">
+                <a type="button" [routerLink]="['/edit', client.id]" class="btn btn-info btn-sm mr-2"><i class="fa fa-pencil"></i></a>
+                <a type="button" (click)="removeClient(client.id)" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></a>
+            </td>
           </tr>
         </tbody>
       </table>

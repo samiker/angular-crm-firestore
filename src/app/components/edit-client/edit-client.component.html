@@ -1,3 +1,40 @@
-<p>
-  edit-client works!
-</p>
+
+<div class="row">
+    <div class="col-md-6">
+      <h1>Edit Client</h1>
+    </div>
+    <div class="col-md-6 text-right">
+      <a routerLink="/" class="btn btn-link">
+        <i class="fa fa-arrow-left"></i> Back to list
+      </a>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+  <form #f="ngForm" (submit)="updateClient(f)">
+      <div class="form-group">
+        <label for="firstName">firstName</label>
+        <input [(ngModel)]="client.firstName" name="firstName" id="firstName" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="lastName">lastName</label>
+        <input [(ngModel)]="client.lastName" name="lastName" id="lastName" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="phone">telephone</label>
+        <input [(ngModel)]="client.phone" name="phone" id="phone" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">email</label>
+        <input [ngClass]="{'is-invalid': email.touched && email.invalid}" required [(ngModel)]="client.email" #email="ngModel" name="email" id="email" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="balance">balance</label>
+        <input [ngClass]="{'is-invalid': balance.touched && balance.invalid}" required [(ngModel)]="client.balance" #balance="ngModel" name="balance" id="balance" type="number" class="form-control">
+      </div>
+  
+      <button class="btn btn-warning btn-block"><i class="fa fa-refresh"></i>Update Client</button>
+   </form>
+    </div>
+  </div>

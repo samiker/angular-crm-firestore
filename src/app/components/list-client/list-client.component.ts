@@ -10,6 +10,7 @@ import { Client } from 'src/app/models/client';
 export class ListClientComponent implements OnInit {
 
   clients: Client[] = [];
+  authenticated = 0;
   
   constructor(private clientService: ClientService) { }
 
@@ -22,6 +23,25 @@ export class ListClientComponent implements OnInit {
                       .subscribe(
                         (res: Client[]) => this.clients = res
                         );
+  }
+
+  removeClient(id) {
+    this.clientService._removeClient(id)
+    .then((res) => console.log(res))
+    .catch((error) => console.error(error))
+  }
+
+  
+  toggleActive(client) {
+    
+    this.clientService._setActive(
+      client.id,
+      {
+      active: !client.active
+      }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err))
   }
 
 }
