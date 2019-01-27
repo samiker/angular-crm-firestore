@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+  
+  <div class="card">
+    <img class="card-img-top" src="holder.js/100x180/" alt="">
+    <div class="card-body">
+      <h4 class="card-title"><i class="fa fa-user"></i></h4>
+      <div class="card-text">
+  
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input [(ngModel)]="email" id="Email" type="text" class="form-control">
+  </div>
+  
+  <div class="form-group">
+      <label for="Password">Password</label>
+      <input [(ngModel)]="password" id="Password" type="password" class="form-control">
+    </div>
+  
+  <button (click)="login()" class="btn btn-primary btn-block"> <i class="fa fa-user" aria-hidden="true">Register</i> </button>
+  
+      </div>
+    </div>
+  </div>
+  
+    </div>
+  </div>

@@ -18,8 +18,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+
+//Import FormsModule for ngmodel
 import { FormsModule } from '@angular/forms';
 
+
+//Import flash message angular 2
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 @NgModule({
@@ -40,7 +45,8 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     FormsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
