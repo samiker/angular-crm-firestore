@@ -8,6 +8,13 @@
     </div>
   </div>
 
+
+<div class="row">
+  <div class="col-md-3 col-md-offset-9 text-right">
+    <h3>Total : {{ total }} </h3>
+  </div>
+</div>
+
   <div class="row">
     <div class="col-md-12">
 
@@ -17,6 +24,7 @@
         <thead>
           <tr>
             <th>#</th>
+            <th>Image</th>
             <th>Fullname</th>
             <th>Telephone</th>
             <th>Email</th>
@@ -35,6 +43,9 @@
 ">
     <i class="fa fa-power-off"></i>
 </button>
+            </td>
+            <td>
+              <img height="100" [alt]="client.email" [src]="client?.image">
             </td>
             <td>{{ client.firstName }} {{ client.lastName }}</td>
             <td>{{ client.phone }}</td>

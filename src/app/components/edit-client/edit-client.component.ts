@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from 'src/app/services/client.service';
 import { Client } from 'src/app/models/client';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-client',
@@ -10,7 +12,18 @@ import { Client } from 'src/app/models/client';
 })
 export class EditClientComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private clientService: ClientService, private router: Router) { }
+
+  reload = false;
+  selectedImage = null;
+  previewFile = null;
+  task: AngularFireUploadTask;
+  
+  constructor(
+    private route: ActivatedRoute,
+    private clientService: ClientService,
+    private router: Router,
+    private afStorage: AngularFireStorage
+    ) { }
 
   client: Client = {
     id: "",
@@ -19,7 +32,8 @@ export class EditClientComponent implements OnInit {
     email: "",
     phone: "",
     balance: 0,
-    active: false
+    active: false,
+    image: ""
   };
 
   id = "";
@@ -28,24 +42,59 @@ export class EditClientComponent implements OnInit {
     this.clientService._getClient(this.id)
                       .subscribe(
                         (client: Client) => {
-                        this.client = client;                      
+                        this.client = client;
+                        this.previewFile = client.image;
                       }
                       )
   }
 
-
   updateClient(form){
     if (form.valid){
-      this.client.id = this.id;
-      this.clientService._updateClient(this.client)
-          .then((res) => this.router.navigate(['/']))
-          .catch((error) => console.log(error));
+
+      this.reload = true;
+
+      //pour enregistrer le fichier sur firebase
+      const image = this.selectedImage;
+      const myFile = 'depots/clients/'+image.name;
+
+      this.task = this.afStorage.upload(myFile, image);
+      const ref = this.afStorage.ref(myFile);
+
+      this.task.snapshotChanges().pipe(
+        finalize(
+          () => {
+            ref.getDownloadURL().subscribe(
+              (downloadURL) => {
+                //inclure l'image sur le model client
+                this.client.image = downloadURL;
+
+                //pour enregister le client
+                this.client.id = this.id;
+                this.clientService._updateClient(this.client)
+                    .then((res) => this.router.navigate(['/']))
+                    .catch((error) => console.log(error));
+              }
+            )
+          }
+          )
+      ).subscribe()
+
+
     }
     else {
       alert('form invalid');
     }
   }
 
+  previewImage(event){
+    this.selectedImage = event.target.files[0];
+
+
+    const reader = new FileReader();
+    reader.onload = () => this.previewFile = reader.result;
+    reader.readAsDataURL(this.selectedImage)
+
+  }
 
 
 }

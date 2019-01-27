@@ -26,6 +26,10 @@ import { FormsModule } from '@angular/forms';
 //Import flash message angular 2
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
+//Import firestoragemodule
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
+
 
 @NgModule({
   declarations: [
@@ -46,7 +50,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     AngularFirestoreModule,
     FormsModule,
     AngularFireAuthModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

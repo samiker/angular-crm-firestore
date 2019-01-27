@@ -13,6 +13,7 @@ export class ListClientComponent implements OnInit {
   search = "";
   searchClients: Client[] = [];
   clients: Client[] = [];
+  total = 0;
   
   constructor(private clientService: ClientService) { }
 
@@ -25,7 +26,7 @@ export class ListClientComponent implements OnInit {
         .subscribe(
           (res: Client[]) => {
            this.searchClients = this.clients = res
-           console.log(res);
+           this.calculeTotal();
         })
   }
 
@@ -56,5 +57,22 @@ export class ListClientComponent implements OnInit {
       .then((res) => console.log(res))
       .catch((err) => console.error(err))
   }
+
+  // getTotal(){
+  //   this.clients.forEach(client => {
+  //     this.total += client.balance
+  //   });
+  //   return this.total;
+  // }
+
+  calculeTotal(){
+
+    this.total = _.reduce(
+      this.searchClients,
+      (sum, client) => {
+        return sum + client.balance
+      }, 0);
+    }
+
 
 }

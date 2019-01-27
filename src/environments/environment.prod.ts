@@ -5,7 +5,7 @@ export const environment = {
     authDomain: "crm-angular-af885.firebaseapp.com",
     databaseURL: "https://crm-angular-af885.firebaseio.com",
     projectId: "crm-angular-af885",
-    storageBucket: "",
+    storageBucket: "gs://crm-angular-af885.appspot.com",
     messagingSenderId: "580513055856"
   }
 };
