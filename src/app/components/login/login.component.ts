@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.authService._login(this.email, this.password)
                     .then( res=> {
                       this.flashMessage.show(
-                        "Your Account Has been Created",
+                        "Your are Logged",
                       {
                         cssClass: "alert-success",
                         timeout: 5000

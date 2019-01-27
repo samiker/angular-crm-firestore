@@ -13,7 +13,17 @@
           <a class="nav-link" [routerLink]="['/']">Clients</a>
         </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+
+    <ul class="navbar-nav ml-auto" *ngIf="currentUser">
+      <li class="nav-item">
+        <a class="nav-link">{{ currentUser.email }}</a>
+      </li>
+      <li class="nav-item">
+        <button (click)="logout()" class="btn btn-link btn-logout">Logout</button>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!currentUser">
       <li class="nav-item">
         <a [routerLink]="['/register']" class="nav-link">Register</a>
       </li>
@@ -21,6 +31,8 @@
         <a [routerLink]="['/login']" class="nav-link">Login</a>
       </li>
     </ul>
+
+
   </div>
 </nav>
 

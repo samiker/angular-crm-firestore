@@ -6,13 +6,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { EditClientComponent } from './components/edit-client/edit-client.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "", component: ListClientComponent },
-  { path: "add", component: AddClientComponent },
-  { path: "edit/:idclient", component: EditClientComponent },
+  { path: "", component: ListClientComponent, canActivate: [AuthGuard] },
+  { path: "add", component: AddClientComponent, canActivate: [AuthGuard] },
+  { path: "edit/:idclient", component: EditClientComponent, canActivate: [AuthGuard] },
   { path: "**", component: PageNotFoundComponent }
 ];
 
